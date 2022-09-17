@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
 import pymysql
 import pandas as pd
+from perceptron import Perceptron;
+import matplotlib.pyplot as plt
 
 user = 'root' #usuario mySQL
 password = 'toor' #senha mySQL
@@ -22,10 +24,13 @@ avaliacDataSet = creditoDataSet[int(creditoDataSet.shape[0] * 0.8):]
 
 #print(creditoDataSet)
 #print(creditoDataSet.shape[0])
-print(treinoDataSet.shape)
-print(avaliacDataSet.shape)
+# print(treinoDataSet.shape)
+# print(avaliacDataSet.shape)
 
+p = Perceptron(lr = 0.1, n_epochs = 100)
+p.train(x = treinoDataSet[:, 1:20], d = treinoDataSet[:, 21])
 
-
+teste_resultado = p.test(avaliacDataSet[:, 1:20])
+print(teste_resultado)
 
 dbConnection.close() #fechando a conex
