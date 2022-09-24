@@ -21,7 +21,8 @@ class Perceptron:
     
     def train(self, x, d):
         ''' Definir aleatoriamente os pesos, o bias e o peso do bias
-            Enquanto houver erro, ou o máximo de épocas não for atingido continua o processo            
+            Enquanto houver erro, ou o máximo de épocas não for atingido continua o processo
+            
         '''
         self.weights = np.random.random(x.shape[1])
         self.bias = np.random.random()
@@ -32,13 +33,12 @@ class Perceptron:
         self.total_error = []
         
         while is_error and epoch < self.n_epochs:
-            print(f"epoch = {epoch}")
             is_error  = False
             epoch_errors = 0
-            x = np.array(x)
-            d = np.array(d)
+            
             # Para cada amostra
             for xi, target in zip(x, d):
+                
                 predicted = self.predict(xi)
                 predicted = self.activation(predicted)
                 
@@ -53,12 +53,12 @@ class Perceptron:
                     is_error = True
                     
             self.total_error.append(epoch_errors/len(x))
+            print(f"epoch = {epoch}")
             epoch += 1
             
     def test(self, x):
         ''' Dado uma lista de X, submete-os à rede'''
-        results = []        
-        x = np.array(x)
+        results = []
         for xi in x:
             predict = self.predict(xi)
             predict = self.activation(predict)

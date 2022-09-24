@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine
-import pymysql
 import pandas as pd
 import numpy as np
-from perceptron import Perceptron;
+from perceptron import Perceptron
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 user = 'root' #usuario mySQL
 password = 'toor' #senha mySQL
@@ -20,43 +20,30 @@ creditoDataSet = pd.read_sql("select * from statlog.germancredit", dbConnection)
 
 pd.set_option('display.expand_frame_repr', False)
 
-#mudar a partir daqui usando a ia
-# treinoDataSet = pd.DataFrame(creditoDataSet[0:int(creditoDataSet.shape[0] * 0.8)])
-# avaliacDataSet = pd.DataFrame(creditoDataSet[int(creditoDataSet.shape[0] * 0.8):])
-treinoDataSet = pd.DataFrame(creditoDataSet)
-
-Dados = treinoDataSet[[
+#Separando as entradas da IA
+Dados = np.array(creditoDataSet[[
     'laufkont', 'laufzeit', 'moral', 'verw', 'hoehe', 'sparkont', 'beszeit', 'rate', 'famges', 'buerge',
     'wohnzeit', 'verm', 'alter', 'weitkred', 'wohn', 'bishkred', 'beruf', 'pers', 'telef', 'gastarb'
-]]
-Resp = treinoDataSet['kredit']
+]])
 
-# avaliacDataSetDados = avaliacDataSet[[
-#     'laufkont', 'laufzeit', 'moral', 'verw', 'hoehe', 'sparkont', 'beszeit', 'rate', 'famges', 'buerge',
-#     'wohnzeit', 'verm', 'alter', 'weitkred', 'wohn', 'bishkred', 'beruf', 'pers', 'telef', 'gastarb'
-# ]]
+#Separando a saída da IA
+Resp = np.array(creditoDataSet['kredit'])
 
-# avaliacDataSetResp = avaliacDataSet['kredit']
+#Dividindo 80% para teino e 20% para teste
+X_train, X_test, y_train, y_test = train_test_split(Dados, Resp, test_size=0.2, random_state=6)
 
-X_train, X_test, y_train, y_test = train_test_split(Dados, Resp, test_size=0.8, random_state=42)
+#Definido a IA, sua taxa de apredizagem e o numero de épocas
+p = Perceptron(lr = 0.0001, n_epochs = 2000)
 
-# print(y_train)
-# print(y_test)
-# print(creditoDataSet)
-# print(creditoDataSet.shape[0])
-# print(treinoDataSet.shape)
-# print(avaliacDataSet.shape)
-# print(treinoDataSetResp.shape)
-# print(avaliacDataSetResp.shape)
-# print(treinoDataSetResp)
-
-p = Perceptron(lr = 0.0001, n_epochs = 20000000)
-
+#Treinando a IA
 p.train(x = X_train, d = y_train)
 
+#Realizando o teste com resultado da IA
 teste_resultado = p.test(X_test)
-print(np.array(teste_resultado))
-print(np.array(y_test))
-print(np.array(np.array(teste_resultado)==np.array(y_test)))
+
+#Métrica de avaliação da IA após treino e teste
+print(f"Porcentegem = {accuracy_score(y_test, teste_resultado)*100}%")
+print(f"Números de acertos = {accuracy_score(y_test, teste_resultado, normalize=False)}")
+
 
 dbConnection.close() #fechando a conex
