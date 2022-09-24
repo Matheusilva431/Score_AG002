@@ -33,7 +33,7 @@ Resp = np.array(creditoDataSet['kredit'])
 X_train, X_test, y_train, y_test = train_test_split(Dados, Resp, test_size=0.2, random_state=6)
 
 #Definido a IA, sua taxa de apredizagem e o numero de épocas
-p = Perceptron(lr = 0.0001, n_epochs = 2000)
+p = Perceptron(lr = 0.0001, n_epochs = 500000)
 
 #Treinando a IA
 p.train(x = X_train, d = y_train)
