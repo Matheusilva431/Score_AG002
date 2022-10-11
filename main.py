@@ -1,3 +1,4 @@
+import random
 from sqlalchemy import create_engine
 import pandas as pd
 import numpy as np
@@ -33,7 +34,7 @@ Resp = np.array(creditoDataSet['kredit'])
 X_train, X_test, y_train, y_test = train_test_split(Dados, Resp, test_size=0.2, random_state=6)
 
 #Definido a IA, sua taxa de apredizagem e o numero de épocas
-p = Perceptron(lr = 0.0001, n_epochs = 500000)
+p = Perceptron(lr = 1e-10, n_epochs = 100000)
 
 #Treinando a IA
 p.train(x = X_train, d = y_train)
@@ -42,8 +43,23 @@ p.train(x = X_train, d = y_train)
 teste_resultado = p.test(X_test)
 
 #Métrica de avaliação da IA após treino e teste
+score = accuracy_score(y_test, teste_resultado)
 print(f"Porcentegem = {accuracy_score(y_test, teste_resultado)*100}%")
 print(f"Números de acertos = {accuracy_score(y_test, teste_resultado, normalize=False)}")
 
+inHead = [
+    'laufkont', 'laufzeit', 'moral', 'verw', 'hoehe', 'sparkont', 'beszeit', 'rate', 'famges', 'buerge',
+    'wohnzeit', 'verm', 'alter', 'weitkred', 'wohn', 'bishkred', 'beruf', 'pers', 'telef', 'gastarb'
+]
+inDado = np.array([])
+for i in inHead:
+    # print(f"{i}: ")
+    entrada = int(input())
+    inDado = np.append(inDado, entrada)
+
+if p.activation(p.predict(inDado)) == 1:
+    print("Bom")
+else:
+    print("Ruim")
 
 dbConnection.close() #fechando a conex

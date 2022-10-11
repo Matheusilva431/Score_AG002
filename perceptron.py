@@ -8,7 +8,7 @@ class Perceptron:
         self.n_epochs = n_epochs
         
     def activation(self, value):
-        ''' 1 se value > 0, -1 se value < 0, 0 se value == 0 '''
+        ''' 1 se value > 0, 0 se value < 0, 0 se value == 0 '''
         return (1 if value > 0 else 0 if value < 0 else 0)
         
     def predict(self, x):
