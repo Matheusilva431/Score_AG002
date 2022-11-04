@@ -53,7 +53,8 @@ class Perceptron:
                     is_error = True
                     
             self.total_error.append(epoch_errors/len(x))
-            print(f"epoch = {epoch}")
+            if epoch % 1000 == 0:
+                print(f"epoch = {epoch}")
             epoch += 1
             
     def test(self, x):
