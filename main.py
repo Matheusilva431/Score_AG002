@@ -6,6 +6,7 @@ from perceptron import Perceptron
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.neural_network import MLPClassifier
 
 sg.theme('DarkBlue 15')   # Add a touch of color
 # All the stuff inside your window.
@@ -70,6 +71,7 @@ while True:
     teste_resultado = p.test(X_test)
 
     #Métrica de avaliação da IA após treino e teste
+    print(np.array(X_test)[37])
     sg.Popup(f"Porcentagem: {accuracy_score(y_test, teste_resultado) * 100}%"+f"\nNúmeros de acertos: {accuracy_score(y_test, teste_resultado, normalize=False)}", keep_on_top=True)
     score = accuracy_score(y_test, teste_resultado)
     print(y_test)
