@@ -10,21 +10,21 @@ from sklearn.neural_network import MLPClassifier
 
 sg.theme('DarkBlue 15')   # Add a touch of color
 # All the stuff inside your window.
-layout = [  [sg.Text('Entre com o erro (Quanto menor melhor resultado, ex 0.0001): ')],
+layout = [  [sg.Text('Entre com a taxa de aprendizagem(Recomendado 7e-7): ')],
             [sg.InputText()],
-            [sg.Text('Entre com o número de épocas (Quanto maior melhor resultado, ex 500000): ')],
+            [sg.Text('Entre com o número de épocas (Recomendado 150000~160000 para lr=7e-7): ')],
             [sg.InputText()],
-            [sg.Text('Entre com os dados a serem verificados: ')],
-            [sg.Text('Laufkont: '), sg.InputText(size=(10,10)), sg.Text('laufzeit:   '), sg.InputText(size=(10,10))],
-            [sg.Text('moral:     '), sg.InputText(size=(10,10)), sg.Text('verw:       '), sg.InputText(size=(10,10))],
-            [sg.Text('hoehe:    '), sg.InputText(size=(10,10)), sg.Text('sparkont: '), sg.InputText(size=(10,10))],
-            [sg.Text('beszeit:  '), sg.InputText(size=(10,10)), sg.Text('rate:        '), sg.InputText(size=(10,10))],
-            [sg.Text('famges:  '), sg.InputText(size=(10,10)), sg.Text('buerge:    '), sg.InputText(size=(10,10))],
-            [sg.Text('wohnzeit:'), sg.InputText(size=(10,10)), sg.Text('verm:       '), sg.InputText(size=(10,10))],
-            [sg.Text('alter:      '), sg.InputText(size=(10,10)), sg.Text('weitkred:  '), sg.InputText(size=(10,10))],
-            [sg.Text('wohn:     '), sg.InputText(size=(10,10)), sg.Text('bishkred: '), sg.InputText(size=(10,10))],
-            [sg.Text('beruf:     '), sg.InputText(size=(10,10)), sg.Text('pers:        '), sg.InputText(size=(10,10))],
-            [sg.Text('telef:        '), sg.InputText(size=(10,10)), sg.Text('gastarb: '), sg.InputText(size=(10,10))],
+            [sg.Text('Entre com os dados a serem verificados(Recomendações para BOM/RUIM): ')],
+            [sg.Text('Laufkont(2/1):       '), sg.InputText(size=(10,10)), sg.Text('laufzeit(10/48): '), sg.InputText(size=(10,10))],
+            [sg.Text('moral(2/2):           '), sg.InputText(size=(10,10)), sg.Text('verw(0/0):         '), sg.InputText(size=(10,10))],
+            [sg.Text('hoehe(7308/3931):'), sg.InputText(size=(10,10)), sg.Text('sparkont(1/1):  '), sg.InputText(size=(10,10))],
+            [sg.Text('beszeit(1/4):         '), sg.InputText(size=(10,10)), sg.Text('rate(2/4):         '), sg.InputText(size=(10,10))],
+            [sg.Text('famges(3/3):         '), sg.InputText(size=(10,10)), sg.Text('buerge(1/1):     '), sg.InputText(size=(10,10))],
+            [sg.Text('wohnzeit(4/4):       '), sg.InputText(size=(10,10)), sg.Text('verm(4/4):        '), sg.InputText(size=(10,10))],
+            [sg.Text('alter(70/46):          '), sg.InputText(size=(10,10)), sg.Text('weitkred(1/3):  '), sg.InputText(size=(10,10))],
+            [sg.Text('wohn(3/3):            '), sg.InputText(size=(10,10)), sg.Text('bishkred(1/1):  '), sg.InputText(size=(10,10))],
+            [sg.Text('beruf(4/3):           '), sg.InputText(size=(10,10)), sg.Text('pers(2/1):        '), sg.InputText(size=(10,10))],
+            [sg.Text('telef(2/1):             '), sg.InputText(size=(10,10)), sg.Text('gastarb(2/2):    '), sg.InputText(size=(10,10))],
             [sg.Button('Ok'), sg.Button('Cancel')] ]
 
 # Cria a janela
@@ -71,11 +71,8 @@ while True:
     teste_resultado = p.test(X_test)
 
     #Métrica de avaliação da IA após treino e teste
-    print(np.array(X_test)[37])
     sg.Popup(f"Porcentagem: {accuracy_score(y_test, teste_resultado) * 100}%"+f"\nNúmeros de acertos: {accuracy_score(y_test, teste_resultado, normalize=False)}", keep_on_top=True)
     score = accuracy_score(y_test, teste_resultado)
-    print(y_test)
-    print(np.array(teste_resultado))
     print(f"Porcentegem = {accuracy_score(y_test, teste_resultado)*100}%")
     print(f"Números de acertos = {accuracy_score(y_test, teste_resultado, normalize=False)}")
 
