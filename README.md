@@ -18,7 +18,7 @@ https://code.visualstudio.com/
 
 ### Clonando repositório:
 ```
-$ git clone https://github.com/Matheusilva431/Score_AG002.git"
+$ git clone "https://github.com/Matheusilva431/Score_AG002.git"
 ``` 
 
 ### Instalando as dependências:
@@ -31,11 +31,26 @@ $ pip install -r requirements.txt"
 $ python main.py
 ```
 
+## Dependências
+
+| **Dependencies** | **Version**  |
+|------------------|--------------|
+| numpy | 1.23.3 |
+| pandas | 1.5.0 |
+| PySimpleGUI | 4.60.4 |
+| scikit_learn | 1.1.3 |
+| SQLAlchemy | 1.4.41 |
+
 ## 3 - Onde o usuário consegue achar ajuda 	:sos:
 
-Pode enviar uma mensagem por email para danielcoelho@gec.inatel.br
+|**Email para contato**       |
+|-----------------|
+|danielcoelho@gec.inatel.br|
+|m.chagas@gec.inatel.br|
 
 ## 4 - Autores :curly_haired_man:
-
-Autor Daniel https://github.com/daniellichotti
-
+ 
+| **Nome**        |
+|-----------------|
+| [Daniel](https://github.com/daniellichotti)|
+| [Matheus Chagas](https://github.com/Matheusilva431) |
