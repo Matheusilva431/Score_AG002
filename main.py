@@ -5,7 +5,6 @@ import numpy as np
 from perceptron import Perceptron
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-from sklearn.neural_network import MLPClassifier
 
 user = 'root' #usuario mySQL
 password = 'toor' #senha mySQL
