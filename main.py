@@ -7,6 +7,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.neural_network import MLPClassifier
 
+user = 'root' #usuario mySQL
+password = 'toor' #senha mySQL
+host = '127.0.0.1' #host
+port = 3306 #porta
+database = 'statlog' #nome do database
+
+sqlEngine = create_engine(url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(user, password, host, port, database)) #conectando ao bd
+
+dbConnection = sqlEngine.connect() #conectando
+
 sg.theme('DarkBlue 15')   # Add a touch of color
 # All the stuff inside your window.
 layout = [  [sg.Text('Entre com a taxa de aprendizagem(Recomendado 7e-7): ')],
@@ -33,16 +43,6 @@ while True:
     event, values = window.read()
     if event == sg.WIN_CLOSED or event == 'Cancel': # break se o usuario fechar janela ou clicar em cancel
         break
-
-    user = 'root' #usuario mySQL
-    password = 'toor' #senha mySQL
-    host = '127.0.0.1' #host
-    port = 3306 #porta
-    database = 'statlog' #nome do database
-
-    sqlEngine = create_engine(url="mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(user, password, host, port, database)) #conectando ao bd
-
-    dbConnection = sqlEngine.connect() #conectando
 
     creditoDataSet = pd.read_sql("select * from statlog.germancredit", dbConnection) #salvando o dataset
 
@@ -90,6 +90,6 @@ while True:
     else:
         sg.Popup("Ruim")
 
-    dbConnection.close() #fechando a conex
+dbConnection.close() #fechando a conex
 
 window.close()
