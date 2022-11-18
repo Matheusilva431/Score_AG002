@@ -16,6 +16,21 @@ https://www.python.org/downloads/
 https://code.visualstudio.com/
 ```
 
+### Instalando o MySQL(Crie um usuário: ```root``` com a senha: ```toor```):
+```
+https://dev.mysql.com/downloads/installer/
+```
+
+## Outra alternativa para utilizar o MySQL:
+
+Vai em extensões no VSCode e procure por MySQL e o instale:
+
+<img src="https://user-images.githubusercontent.com/85804680/202612056-53c8a65c-b0ca-44eb-a34e-92284e6ea117.png" width="500">
+
+Clique no Database -> Create Connection -> Coloque um nome -> Coloque o usuário ```root``` e a senha ```toor``` -> Connect:
+
+<img src="https://user-images.githubusercontent.com/85804680/202613595-3907f606-6d0f-4ef8-ae2f-cd553472816c.png" width="500">
+
 ### Clonando repositório:
 ```
 $ git clone "https://github.com/Matheusilva431/Score_AG002.git"
